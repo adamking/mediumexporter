@@ -44,10 +44,13 @@ module.exports = function(mediumURL, program, callback) {
     }
 
     story.markdown = [];
-    story.markdown.push("\n# "+story.title.replace(/\n/g,'\n# '));
+    story.markdown.push("---");
+    story.markdown.push("title:"+story.title.replace(/\n/g,'\n# ').toString());
     if (undefined != story.subtitle) {
-      story.markdown.push("\n"+story.subtitle.replace(/#+/,''));
+      story.markdown.push("subtitle:"+story.title.replace(/\n/g,'\n# ').toString());
     }
+    story.markdown.push("date:"+story.date.toString());
+    story.markdown.push("---");
 
     let lastParagraph = null;
     story.paragraphs = story.paragraphs.filter((p, idx) => {
@@ -62,7 +65,7 @@ module.exports = function(mediumURL, program, callback) {
     var promises = [];
 
     for(var i=2;i<story.paragraphs.length;i++) {
-      
+
       if(sections[i]) story.markdown.push(sections[i]);
 
       var promise = new Promise(function (resolve, reject) {

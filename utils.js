@@ -83,7 +83,6 @@ var utils = {
           .replace(/>/g, '&gt;')
           .replace(/</g, '&lt;');
     }
-
     var markup = "";
     switch(p.type) {
       case 1:
