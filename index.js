@@ -26,10 +26,10 @@ program
 program.parse(process.argv);
 
 var mediumURL = program.args[0];
+var outputPath = program.args[1];
 
 if (mediumURL.match(/medium\.com\/feed\//)) {
-  require('./get-feed')(mediumURL, program);
+  require('./get-feed')(mediumURL, outputPath, program);
 } else {
-  require('./get-post')(mediumURL, program);
+  require('./get-post')(mediumURL, outputPath, program);
 }
-

@@ -3,8 +3,8 @@ var rssParser = require('rss-parser')
   , path = require('path')
   , getPost = require('./get-post');
 
-module.exports = function(feedURL, program, callback) {
-  let outputDir = program.output || process.cwd();
+module.exports = function(feedURL, outputPath, program, callback) {
+  let outputDir = outputPath || process.cwd() + "/posts";
   rssParser.parseURL(feedURL, function(err, data) {
     if (err) return callback(err);
     Promise.all(data.feed.entries.map(entry => {
