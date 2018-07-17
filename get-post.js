@@ -44,13 +44,13 @@ module.exports = function(mediumURL, program, callback) {
     }
 
     story.markdown = [];
-    story.markdown.push("---");
-    story.markdown.push("title:"+story.title.replace(/\n/g,'\n# ').toString());
+    story.markdown.push("+++");
+    story.markdown.push("title="+"'"+story.title.replace(/\n/g,'\n# ')+"'");
     if (undefined != story.subtitle) {
-      story.markdown.push("subtitle:"+story.title.replace(/\n/g,'\n# ').toString());
+      story.markdown.push("subtitle="+"'"+story.title.replace(/\n/g,'\n# ')+"'");
     }
-    story.markdown.push("date:"+story.date.toString());
-    story.markdown.push("---");
+    story.markdown.push("date="+"'"+story.date+"'");
+    story.markdown.push("+++");
 
     let lastParagraph = null;
     story.paragraphs = story.paragraphs.filter((p, idx) => {
