@@ -32,7 +32,7 @@ var utils = {
       var tokens = res.body.match(/youtube.com%2Fembed%2F([^%]+)%3F/);
       if (tokens && tokens.length > 1) {
         var videoId = tokens[1];
-        return cb(null, `<center><iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></center>`);
+        return cb(null, `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`);
       }
       cb(null, `<iframe src="${iframesrc}" frameborder=0></iframe>`);
     });
@@ -119,7 +119,7 @@ var utils = {
         markup = "\n1. ";
         break;
       case 11:
-        return utils.getGitHubEmbed('https://medium.com/media/'+p.iframe.mediaResourceId, function(err, embed) {
+        return utils.getYouTubeEmbed('https://medium.com/media/'+p.iframe.mediaResourceId, function(err, embed) {
           cb(null, `\n${embed}`);
         });
       case 13:

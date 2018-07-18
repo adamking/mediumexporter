@@ -30,6 +30,8 @@ module.exports = function(mediumURL, program, callback) {
       outputText += program.separator + '\n';
     }
 
+    console.log( "Processing story: " + story.title);
+
     story.sections = s.content.bodyModel.sections;
     story.paragraphs = s.content.bodyModel.paragraphs;
 
@@ -40,15 +42,13 @@ module.exports = function(mediumURL, program, callback) {
       sections[s.startIndex] = section;
     }
 
-    if(story.paragraphs.length > 1) {
-      story.subtitle = story.paragraphs[1].text;
-    }
+    story.subtitle = story.paragraphs[1].text;
 
     story.markdown = [];
     story.markdown.push("+++");
     story.markdown.push("title="+"'"+story.title.replace(/\n/g,'\n# ')+"'");
     if (undefined != story.subtitle) {
-      story.markdown.push("subtitle="+"'"+story.title.replace(/\n/g,'\n# ')+"'");
+      story.markdown.push("subtitle="+"'"+story.subtitle.replace(/\n/g,'\n# ')+"'");
     }
     story.markdown.push("date="+"'"+story.date+"'");
     story.markdown.push("+++");
@@ -65,7 +65,7 @@ module.exports = function(mediumURL, program, callback) {
 
     var promises = [];
 
-    for(var i=2;i<story.paragraphs.length;i++) {
+    for(var i=1;i<story.paragraphs.length;i++) {
 
       if(sections[i]) story.markdown.push(sections[i]);
 
